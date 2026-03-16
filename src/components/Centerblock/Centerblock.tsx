@@ -1,6 +1,6 @@
 import styles from "./centerblock.module.css";
 import classnames from "classnames";
-import TrackList from "./TrackList";
+import TrackList from "../TrackList/TrackList";
 
 export default function CenterBlock() {
   return (

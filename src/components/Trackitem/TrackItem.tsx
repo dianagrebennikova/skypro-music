@@ -1,4 +1,4 @@
-import styles from "./centerblock.module.css";
+import styles from "./trackitem.module.css";
 import Link from "next/link";
 
 type TrackItemProps = {

@@ -1,5 +1,5 @@
-import styles from "./centerblock.module.css";
-import TrackItem from "./TrackItem";
+import styles from "./tracklist.module.css";
+import TrackItem from "../Trackitem/TrackItem";
 
 const tracks = [
   {
