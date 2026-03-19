@@ -345,3 +345,7 @@
     stroke: #ffffff;
     cursor: pointer;
   }
+
+  .audioHidden {
+    display: none;
+  }

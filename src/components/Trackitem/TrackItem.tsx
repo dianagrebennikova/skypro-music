@@ -1,48 +1,60 @@
+import { TrackType } from "@/sharedTypes/types";
 import styles from "./trackitem.module.css";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { setCurrentTrack } from "@/store/features/trackSlice";
+import classnames from "classnames";
 
 type TrackItemProps = {
-  title: string;
-  author: string;
-  album: string;
-  time: string;
-  extra?: string;
+  track: TrackType;
 };
 
-export default function TrackItem({
-  title,
-  author,
-  album,
-  time,
-  extra,
-}: TrackItemProps) {
+export default function TrackItem({ track }: TrackItemProps) {
+  const dispatch = useAppDispatch();
+  const { currentTrack, isPlay } = useAppSelector((state) => state.tracks);
+
+  const isCurrent = currentTrack?._id === track._id;
+
+  const onClickTrack = () => {
+    dispatch(setCurrentTrack(track));
+  };
+
   return (
-    <div className={styles.playlist__item}>
+    <div className={styles.playlist__item} onClick={onClickTrack}>
       <div className={styles.playlist__track}>
         <div className={styles.track__title}>
           <div className={styles.track__titleImage}>
-            <svg className={styles.track__titleSvg}>
-              <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
-            </svg>
+            {isCurrent ? (
+              <div
+              className={classnames(styles.track__titleSvg, {
+                [styles.active]: isCurrent,
+                [styles.playing]: isCurrent && isPlay,
+              })}
+              />
+            ) : (
+              <svg className={styles.track__titleSvg}>
+                <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
+              </svg>
+            )}
           </div>
 
           <div className={styles["track__title-text"]}>
             <Link className={styles.track__titleLink} href="">
-              {title}
-              <span className={styles.track__titleSpan}>{extra}</span>
+              {track.name}
+              <span className={styles.track__titleSpan}></span>
             </Link>
           </div>
         </div>
 
         <div className={styles.track__author}>
           <Link className={styles.track__authorLink} href="">
-            {author}
+            {track.author}
           </Link>
         </div>
 
         <div className={styles.track__album}>
           <Link className={styles.track__albumLink} href="">
-            {album}
+            {track.album}
           </Link>
         </div>
 
@@ -50,7 +62,9 @@ export default function TrackItem({
           <svg className={styles.track__timeSvg}>
             <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
           </svg>
-          <span className={styles.track__timeText}>{time}</span>
+          <span className={styles.track__timeText}>
+            {track.duration_in_seconds}
+          </span>
         </div>
       </div>
     </div>
