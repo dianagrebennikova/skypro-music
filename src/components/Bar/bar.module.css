@@ -1,5 +1,5 @@
 .bar {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -344,4 +344,8 @@
     fill: #696969;
     stroke: #ffffff;
     cursor: pointer;
+  }
+
+  .audioHidden {
+    display: none;
   }

@@ -1,46 +1,23 @@
-import styles from "./tracklist.module.css";
+"use client";
+
+import { useEffect, useState } from "react";
+import { getAllTracks } from "@/api/tracks";
+import { TrackType } from "@/sharedTypes/types";
 import TrackItem from "../Trackitem/TrackItem";
 
-const tracks = [
-  {
-    title: "Guilt",
-    author: "Nero",
-    album: "Welcome Reality",
-    time: "4:44",
-  },
-  {
-    title: "Elektro",
-    author: "Dynoro, Outwork, Mr. Gee",
-    album: "Elektro",
-    time: "2:22",
-  },
-  {
-    title: "I’m Fire",
-    author: "Ali Bakgor",
-    album: "I’m Fire",
-    time: "2:22",
-  },
-  {
-    title: "Non Stop",
-    author: "Стоункат, Psychopath",
-    album: "Non Stop",
-    time: "4:12",
-    extra: "(Remix)",
-  },
-  {
-    title: "Run Run",
-    author: "Jaded, Will Clarke, AR/CO",
-    album: "Run Run",
-    time: "2:54",
-    extra: "(feat. AR/CO)",
-  },
-];
-
 export default function TrackList() {
+  const [tracks, setTracks] = useState<TrackType[]>([]);
+
+  useEffect(() => {
+    getAllTracks().then((data) => {
+      setTracks(data.data);
+    });
+  }, []);
+
   return (
-    <div className={styles.content__playlist}>
-      {tracks.map((track, index) => (
-        <TrackItem key={index} {...track} />
+    <div>
+      {tracks.map((track) => (
+        <TrackItem key={track._id} track={track} />
       ))}
     </div>
   );
