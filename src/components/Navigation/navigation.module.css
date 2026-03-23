@@ -33,6 +33,7 @@
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+    cursor: pointer;
   }
 
   .burger__line {
@@ -43,10 +44,13 @@
   }
 
   .nav__menu {
-    display: block;
+    display: none;
     visibility: visible;
   }
-  
+  .nav__menu.active {
+    display: block;
+  }
+
   .menu__list {
     padding: 18px 0 10px 0;
   }

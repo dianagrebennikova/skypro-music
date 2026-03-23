@@ -1,31 +1,27 @@
+'use client'
+
+import { useEffect, useState } from "react";
 import styles from "./centerblock.module.css";
 import classnames from "classnames";
 import TrackList from "../TrackList/TrackList";
+import Search from "../Search/Search";
+import Filter from "../Filter/Filter";
+import { getAllTracks } from "@/api/tracks";
+import { TrackType } from "@/sharedTypes/types";
 
 export default function CenterBlock() {
+  const [tracks, setTracks] = useState<TrackType[]>([]);
+  
+    useEffect(() => {
+      getAllTracks().then((data) => {
+        setTracks(data.data);
+      });
+    }, []);
   return (
     <div className={styles.centerblock}>
-      <div className={styles.centerblock__search}>
-        <svg className={styles.search__svg}>
-          <use xlinkHref="/img/icon/sprite.svg#icon-search"></use>
-        </svg>
-        <input
-          className={styles.search__text}
-          type="search"
-          placeholder="Поиск"
-          name="search"
-        />
-      </div>
-
+      <Search />
       <h2 className={styles.centerblock__h2}>Треки</h2>
-
-      <div className={styles.centerblock__filter}>
-        <div className={styles.filter__title}>Искать по:</div>
-        <div className={styles.filter__button}>исполнителю</div>
-        <div className={styles.filter__button}>году выпуска</div>
-        <div className={styles.filter__button}>жанру</div>
-      </div>
-
+      <Filter tracks={tracks} />
       <div className={styles.centerblock__content}>
         <div className={styles.content__title}>
           <div className={classnames(styles.playlistTitle__col, styles.col01)}>
@@ -43,8 +39,7 @@ export default function CenterBlock() {
             </svg>
           </div>
         </div>
-
-        <TrackList />
+        <TrackList tracks={tracks}/>
       </div>
     </div>
   );

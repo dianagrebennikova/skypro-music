@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setCurrentTrack } from "@/store/features/trackSlice";
 import classnames from "classnames";
+import {formatTime} from "@/utils/helper"
 
 type TrackItemProps = {
   track: TrackType;
@@ -63,7 +64,7 @@ export default function TrackItem({ track }: TrackItemProps) {
             <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
           </svg>
           <span className={styles.track__timeText}>
-            {track.duration_in_seconds}
+            {formatTime (track.duration_in_seconds)}
           </span>
         </div>
       </div>
