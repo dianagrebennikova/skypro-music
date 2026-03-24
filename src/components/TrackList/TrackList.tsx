@@ -1,19 +1,12 @@
-"use client";
 
-import { useEffect, useState } from "react";
-import { getAllTracks } from "@/api/tracks";
 import { TrackType } from "@/sharedTypes/types";
 import TrackItem from "../Trackitem/TrackItem";
 
-export default function TrackList() {
-  const [tracks, setTracks] = useState<TrackType[]>([]);
+type Props = {
+  tracks: TrackType[];
+};
 
-  useEffect(() => {
-    getAllTracks().then((data) => {
-      setTracks(data.data);
-    });
-  }, []);
-
+export default function TrackList({tracks}: Props) {
   return (
     <div>
       {tracks.map((track) => (
