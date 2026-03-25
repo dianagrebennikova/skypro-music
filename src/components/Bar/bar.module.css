@@ -128,6 +128,12 @@
     fill: transparent;
     stroke: #696969;
   }
+  .player__btnRepeatSvg_active {
+    width: 18px;
+    height: 12px;
+    fill: transparent;
+    stroke: #FFFFFF;
+  }
   
   .player__btnShuffle {
     display: -webkit-box;
@@ -143,6 +149,13 @@
     height: 12px;
     fill: transparent;
     stroke: #696969;
+  }
+
+  .player__btnShuffleSvg_active{
+    width: 19px;
+    height: 12px;
+    fill: transparent;
+    stroke: #FFFFFF;
   }
   
   .player__trackPlay {
@@ -348,4 +361,19 @@
 
   .audioHidden {
     display: none;
+  }
+  .time {
+    position: absolute;
+    right: 20px;
+    bottom: 80px;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .loading{
+    position: absolute;
+    color: #fff;
+    font-size: 14px;
+    bottom: 80px;
+    left: 20px;
   }
