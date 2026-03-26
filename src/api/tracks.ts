@@ -10,8 +10,8 @@ export async function getAllTracks() {
     return res.json();
   }
 
-  export async function getTrackById(id: number) {
-    const res = await fetch(`${BASE_URL}/catalog/track/${id}/`);
+  export async function getTrackById(_id: number) {
+    const res = await fetch(`${BASE_URL}/catalog/track/${_id}/`);
   
     if (!res.ok) {
       throw new Error("Ошибка при получении трека");

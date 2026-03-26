@@ -8,15 +8,22 @@ import Search from "../Search/Search";
 import Filter from "../Filter/Filter";
 import { getAllTracks } from "@/api/tracks";
 import { TrackType } from "@/sharedTypes/types";
+import { useAppDispatch } from "@/store/store";
+import { setCurrentPlaylist } from "@/store/features/trackSlice";
+
 
 export default function CenterBlock() {
   const [tracks, setTracks] = useState<TrackType[]>([]);
   
-    useEffect(() => {
-      getAllTracks().then((data) => {
-        setTracks(data.data);
-      });
-    }, []);
+const dispatch = useAppDispatch();
+
+useEffect(() => {
+  getAllTracks().then((data) => {
+    setTracks(data.data);
+    dispatch(setCurrentPlaylist(data.data)); 
+  });
+}, []);
+
   return (
     <div className={styles.centerblock}>
       <Search />
@@ -39,7 +46,7 @@ export default function CenterBlock() {
             </svg>
           </div>
         </div>
-        <TrackList tracks={tracks}/>
+        <TrackList tracks={tracks} />
       </div>
     </div>
   );

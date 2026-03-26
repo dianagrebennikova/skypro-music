@@ -2,15 +2,16 @@ import { TrackType } from "@/sharedTypes/types";
 import styles from "./trackitem.module.css";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { setCurrentTrack } from "@/store/features/trackSlice";
+import { setCurrentPlaylist, setCurrentTrack } from "@/store/features/trackSlice";
 import classnames from "classnames";
 import {formatTime} from "@/utils/helper"
 
 type TrackItemProps = {
   track: TrackType;
+  playlist: TrackType[];
 };
 
-export default function TrackItem({ track }: TrackItemProps) {
+export default function TrackItem({ track, playlist }: TrackItemProps) {
   const dispatch = useAppDispatch();
   const { currentTrack, isPlay } = useAppSelector((state) => state.tracks);
 
@@ -18,6 +19,7 @@ export default function TrackItem({ track }: TrackItemProps) {
 
   const onClickTrack = () => {
     dispatch(setCurrentTrack(track));
+    dispatch(setCurrentPlaylist(playlist))
   };
 
   return (

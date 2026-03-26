@@ -10,7 +10,7 @@ export default function TrackList({tracks}: Props) {
   return (
     <div>
       {tracks.map((track) => (
-        <TrackItem key={track._id} track={track} />
+        <TrackItem key={track._id} track={track} playlist ={tracks} />
       ))}
     </div>
   );
