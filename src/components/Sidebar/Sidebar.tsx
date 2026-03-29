@@ -21,7 +21,7 @@ export default function Sidebar(){
   const handleLogout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("token");
-    router.push("/auth/singin");
+    router.push("/auth/signin");
   }
     return(
         <div className={styles.main__sidebar}>
