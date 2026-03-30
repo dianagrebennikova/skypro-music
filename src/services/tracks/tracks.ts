@@ -1,6 +1,8 @@
-const BASE_URL = "https://webdev-music-003b5b991590.herokuapp.com";
+import { BASE_URL } from "../constants/constants";
+import { TrackType } from "@/sharedTypes/types";
 
-export async function getAllTracks() {
+
+export async function getAllTracks(): Promise<{ data: TrackType[] }> {
     const res = await fetch(`${BASE_URL}/catalog/track/all/`);
   
     if (!res.ok) {
@@ -19,3 +21,14 @@ export async function getAllTracks() {
   
     return res.json();
   }
+
+
+export async function getSelectionById(id: number) {
+  const res = await fetch(`${BASE_URL}/catalog/selection/${id}/`);
+
+  if (!res.ok) {
+    throw new Error("Ошибка при получении подборки");
+  }
+
+  return res.json();
+}

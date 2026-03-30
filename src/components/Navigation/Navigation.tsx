@@ -11,6 +11,7 @@ export default function Navigation() {
   return (
     <nav className={styles.main__nav}>
       <div className={styles.nav__logo}>
+        <Link href="/music/main">
         <Image
           width={250}
           height={170}
@@ -19,6 +20,7 @@ export default function Navigation() {
           alt={"logo"}
           loading="eager"
         />
+        </Link>
       </div>
       <div className={styles.nav__burger} onClick={() => setIsOpen(!isOpen)}>
         <span className={styles.burger__line}></span>
@@ -28,7 +30,7 @@ export default function Navigation() {
       <div className={`${styles.nav__menu} ${isOpen ? styles.active : ""}`}>
         <ul className={styles.menu__list}>
           <li className={styles.menu__item}>
-            <Link href="#" className={styles.menu__link}>
+            <Link href="/music/main" className={styles.menu__link}>
               Главное
             </Link>
           </li>

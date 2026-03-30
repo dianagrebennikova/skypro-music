@@ -1,32 +1,36 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import styles from "./centerblock.module.css";
 import classnames from "classnames";
 import TrackList from "../TrackList/TrackList";
-import Search from "../Search/Search";
 import Filter from "../Filter/Filter";
-import { getAllTracks } from "@/api/tracks";
+import { getAllTracks } from "@/services/tracks/tracks";
 import { TrackType } from "@/sharedTypes/types";
 import { useAppDispatch } from "@/store/store";
 import { setCurrentPlaylist } from "@/store/features/trackSlice";
 
-
 export default function CenterBlock() {
   const [tracks, setTracks] = useState<TrackType[]>([]);
-  
-const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-useEffect(() => {
-  getAllTracks().then((data) => {
-    setTracks(data.data);
-    dispatch(setCurrentPlaylist(data.data)); 
-  });
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    getAllTracks().then((data) => {
+      setTracks(data.data);
+      dispatch(setCurrentPlaylist(data.data));
+      setIsLoading(false)
+    }) .catch((err) => {
+      console.error("Ошибка при загрузке треков:", err);
+      setError("Не удалось загрузить треки. Попробуйте позже."); 
+    })
+    .finally(() => setIsLoading(false));
 }, []);
 
   return (
-    <div className={styles.centerblock}>
-      <Search />
+    <>
       <h2 className={styles.centerblock__h2}>Треки</h2>
       <Filter tracks={tracks} />
       <div className={styles.centerblock__content}>
@@ -46,8 +50,11 @@ useEffect(() => {
             </svg>
           </div>
         </div>
+        {isLoading && <div className={styles.loading}>Загрузка треков...</div>}
+        {error && <div className={styles.loading} >{error}</div>}
+        {!isLoading && !error && <TrackList tracks={tracks} />} 
         <TrackList tracks={tracks} />
       </div>
-    </div>
+    </>
   );
 }
