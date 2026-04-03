@@ -1,13 +1,14 @@
 .wrapper {
   width: 100%;
-  min-height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: #181818;
+  min-height: 100vh
+
 }
 .container {
   max-width: 1920px;
   margin: 0 auto;
-  position: relative;
+/*   position: relative; */
   background-color: #181818;
 }
 .main {
@@ -62,6 +63,7 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  
 }
 
 .content__title {

@@ -14,9 +14,12 @@ import {
 } from "@/store/features/trackSlice";
 import { getTimePanel } from "@/utils/helper";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { useLikeTrack } from "@/hooks/useLikeTracks";
 
 export default function Bar() {
-  const { currentTrack, isPlay, isShuffle} = useAppSelector((state) => state.tracks);
+  const { currentTrack, isPlay, isShuffle } = useAppSelector(
+    (state) => state.tracks
+  );
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const dispatch = useAppDispatch();
 
@@ -25,6 +28,7 @@ export default function Bar() {
   const [duration, setDuration] = useState(0);
   const [isLoadedTrack, setIsLoadedTrack] = useState(false);
   const [volume, setVolume] = useState(0.5);
+  const { toggleLike, isLike } = useLikeTrack(currentTrack);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -63,7 +67,6 @@ export default function Bar() {
   const onLoadedMetadata = () => {
     setIsLoadedTrack(true);
     if (audioRef.current) {
-      audioRef.current.play();
       dispatch(setIsPlay(true));
     }
   };
@@ -202,19 +205,17 @@ export default function Bar() {
                     styles.player__btnShuffle,
                     styles.btnIcon
                   )}
+                  onClick={toggleLike}
                 >
-                  <svg className={styles.trackPlay__likeSvg}>
-                    <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
-                  </svg>
-                </div>
-                <div
-                  className={classnames(
-                    styles.trackPlay__dislike,
-                    styles.btnIcon
-                  )}
-                >
-                  <svg className={styles.trackPlay__dislikeSvg}>
-                    <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
+                  <svg 
+                  className={classnames(styles.trackPlay__likeSvg, {
+                    [styles.trackPlay__likeSvg_active]: isLike,
+                  })}>
+                    <use
+                      xlinkHref={`/img/icon/sprite.svg#${
+                        isLike ? "icon-like" : "icon-dislike"
+                      }`}
+                    ></use>
                   </svg>
                 </div>
               </div>

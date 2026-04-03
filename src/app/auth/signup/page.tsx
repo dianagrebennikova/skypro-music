@@ -38,7 +38,7 @@ export default function SignUp() {
 
     RegUser({ email, password, username })
       .then((res) => {
-        localStorage.setItem("username", res.data.username);
+        localStorage.setItem("username", res.data.result.username);
         router.push("/music/main");
       })
       .catch((error) => {
