@@ -38,12 +38,14 @@ export default function CenterBlock({
           </div>
         </div>
         <div className={styles.content__playlist}>
-          {errorRes ? (
-            errorRes
-          ) : isLoading ? (
+          {isLoading ? (
             "Загрузка..."
+          ) : errorRes ? (
+            <div className={styles.error}>{errorRes}</div>
+          ) : tracks.length === 0 ? (
+            "Нет треков"
           ) : (
-            <TrackList tracks={tracks ?? []} />
+            <TrackList tracks={tracks} />
           )}
         </div>
       </div>
