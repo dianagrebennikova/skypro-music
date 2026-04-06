@@ -9,9 +9,13 @@ type regUserProps = {
 };
 
 type regUserReturn = {
-  email: string;
-  username: string;
-  _id: number;
+  message: string;
+  result: {
+    email: string;
+    username: string;
+    _id: number;
+  };
+  success: boolean;
 };
 
 export const RegUser = (data: regUserProps): Promise<AxiosResponse<regUserReturn>> => {

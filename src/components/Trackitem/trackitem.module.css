@@ -135,6 +135,12 @@ background: rgba(182, 114, 255, 1);
   margin-right: 17px;
   fill: transparent;
   stroke: #696969;
+  cursor: pointer;
+}
+
+.track__timeSvg_active{
+  stroke: #B672FF;
+
 }
 
 .track__timeText {
@@ -144,4 +150,13 @@ background: rgba(182, 114, 255, 1);
   line-height: 24px;
   text-align: right;
   color: #696969;
+}
+
+.error {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  text-align: left;
 }

@@ -1,9 +1,10 @@
 import { TrackType } from "@/sharedTypes/types";
 
 export function getUniqueValuesByKey(
-    arr: TrackType [], 
+    arr: TrackType [] | undefined, 
     key: keyof TrackType,
 ): string[] {
+  if (!arr) return []; 
 // Используем Set для хранения уникальных значений
 const uniqueValues = new Set<string>();
 

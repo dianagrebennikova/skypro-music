@@ -3,30 +3,28 @@
 import styles from "./sidebar.module.css";
 import Link from 'next/link'
 import Image from 'next/image'; 
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/store/store";
+import { clearUser } from "@/store/features/authSlice";
+import { useAppDispatch } from "@/store/store";
+import { setFavoriteTracks } from "@/store/features/trackSlice";
 
 
 export default function Sidebar(){
-  const[username, setUsername] = useState("");
+    const dispatch = useAppDispatch()
   const router = useRouter();
 
-  useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    if(storedUsername){
-      setUsername(storedUsername)
-    }
-  },[])
+  const username = useAppSelector(state => state.auth.username);
 
   const handleLogout = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("token");
+dispatch(clearUser())
+ dispatch(setFavoriteTracks([])); 
     router.push("/auth/signin");
   }
     return(
         <div className={styles.main__sidebar}>
         <div className={styles.sidebar__personal}>
-          <p className={styles.sidebar__personalName}>{username || ""}</p>
+          <p className={styles.sidebar__personalName}>{username || "Гость"}</p>
           <div className={styles.sidebar__icon} onClick={handleLogout} >
             <svg>
               <use xlinkHref="/img/icon/sprite.svg#logout"></use>
