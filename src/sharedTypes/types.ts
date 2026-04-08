@@ -8,5 +8,5 @@ duration_in_seconds: number;
 album: string;
 logo: null;
 track_file: string; 
-stared_user: [];
+stared_user: any[];
 }

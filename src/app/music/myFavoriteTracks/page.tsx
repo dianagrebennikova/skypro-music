@@ -10,7 +10,9 @@ import { withReauth } from "@/utils/withReAuth";
 export default function MyFavoriteTracks() {
   const dispatch = useAppDispatch();
   const { access, refresh } = useAppSelector((state) => state.auth);
-  const { favoriteTracks } = useAppSelector((state) => state.tracks);
+  const { favoriteTracks, filteredTracks } = useAppSelector(
+    (state) => state.tracks
+  );
 
   const [isLoading, setIsLoading] = useState(true);
   const [errorRes, setErrorRes] = useState<string | null>(null);
@@ -25,12 +27,7 @@ export default function MyFavoriteTracks() {
     setIsLoading(true);
     setErrorRes(null);
 
-    withReauth(
-      (token) => getFavoriteTracks(token), 
-      access,    
-      refresh,   
-      dispatch
-    )
+    withReauth((token) => getFavoriteTracks(token), access, refresh, dispatch)
       .then((res) => {
         dispatch(setFavoriteTracks(res.data));
       })
@@ -44,7 +41,8 @@ export default function MyFavoriteTracks() {
   return (
     <Centerblock
       errorRes={errorRes}
-      tracks={favoriteTracks}
+      tracks={filteredTracks}
+      pagePlaylist={favoriteTracks}
       isLoading={isLoading}
       title="Мои треки"
     />

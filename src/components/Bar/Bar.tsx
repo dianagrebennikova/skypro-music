@@ -31,14 +31,19 @@ export default function Bar() {
   const { toggleLike, isLike } = useLikeTrack(currentTrack);
 
   useEffect(() => {
-    if (!audioRef.current) return;
+    const audio = audioRef.current;
+    if (!audio || !currentTrack) return;
 
     if (isPlay) {
-      audioRef.current.play();
-      dispatch(setIsPlay(true));
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          if (error.name !== "AbortError")
+            console.error("Playback error:", error);
+        });
+      }
     } else {
-      audioRef.current.pause();
-      dispatch(setIsPlay(false));
+      audio.pause();
     }
   }, [isPlay, currentTrack]);
 
@@ -110,6 +115,7 @@ export default function Bar() {
         onTimeUpdate={onTimeUpdate}
         onLoadedMetadata={onLoadedMetadata}
         onEnded={onEnded}
+        preload="auto"
       ></audio>
       <div className={styles.loading}>{isLoadedTrack ? "" : "Загрузка..."}</div>
       <div className={styles.bar__content}>
@@ -207,10 +213,11 @@ export default function Bar() {
                   )}
                   onClick={toggleLike}
                 >
-                  <svg 
-                  className={classnames(styles.trackPlay__likeSvg, {
-                    [styles.trackPlay__likeSvg_active]: isLike,
-                  })}>
+                  <svg
+                    className={classnames(styles.trackPlay__likeSvg, {
+                      [styles.trackPlay__likeSvg_active]: isLike,
+                    })}
+                  >
                     <use
                       xlinkHref={`/img/icon/sprite.svg#${
                         isLike ? "icon-like" : "icon-dislike"

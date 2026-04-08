@@ -1,25 +1,44 @@
+"use client";
+
 import styles from "./centerblock.module.css";
 import classnames from "classnames";
 import TrackList from "../TrackList/TrackList";
 import Filter from "../Filter/Filter";
 import { TrackType } from "@/sharedTypes/types";
+import { useEffect } from "react";
+import { useAppDispatch } from "@/store/store";
+import { clearFilters, setPagePlatlist } from "@/store/features/trackSlice";
 
 type centerBlockProp = {
   tracks?: TrackType[];
   isLoading: boolean;
   errorRes: string | null;
   title: string;
+  pagePlaylist: TrackType[];
 };
 export default function CenterBlock({
   errorRes,
   isLoading,
   tracks = [],
   title,
+  pagePlaylist = [],
 }: centerBlockProp) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(clearFilters());
+  }, [dispatch, title]);
+
+  useEffect(() => {
+    if (!isLoading && !errorRes) {
+      dispatch(setPagePlatlist(pagePlaylist));
+    }
+  }, [dispatch, isLoading, errorRes, pagePlaylist]);
+
   return (
     <>
       <h2 className={styles.centerblock__h2}>{title}</h2>
-      <Filter tracks={tracks} />
+      <Filter tracks={pagePlaylist} />
       <div className={styles.centerblock__content}>
         <div className={styles.content__title}>
           <div className={classnames(styles.playlistTitle__col, styles.col01)}>
@@ -43,7 +62,7 @@ export default function CenterBlock({
           ) : errorRes ? (
             <div className={styles.error}>{errorRes}</div>
           ) : tracks.length === 0 ? (
-            "Нет треков"
+            "Нет подходящих треков"
           ) : (
             <TrackList tracks={tracks} />
           )}
