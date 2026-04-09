@@ -1,12 +1,13 @@
 import styles from "./filteritem.module.css";
 import classNames from "classnames";
 
-type Props = {
+type filterItemProps = {
   name: string;
   label: string;
   activeFilter: string | null;
   setActiveFilter: (value: string | null) => void;
   children?: React.ReactNode;
+  selectedValues?: string[];
 };
 
 export default function FilterItem({
@@ -15,22 +16,24 @@ export default function FilterItem({
   activeFilter,
   setActiveFilter,
   children,
-}: Props) {
+  selectedValues = [],
+}: filterItemProps) {
   const isActive = activeFilter === name;
-
-  const handleClick = () => {
-    setActiveFilter(isActive ? null : name);
-  };
+  const hasSelected = selectedValues.length > 0;
 
   return (
     <div className={styles.filter__wrapper}>
       <div
         className={classNames(styles.filter__button, {
-          [styles.active]: isActive,
+          [styles.active]: isActive || hasSelected,
         })}
-        onClick={handleClick}
+        onClick={() => setActiveFilter(isActive ? null : name)}
       >
         {label}
+
+        {hasSelected && (
+          <span className={styles.filter__count}>{selectedValues.length}</span>
+        )}
       </div>
 
       {isActive && (
