@@ -27,6 +27,7 @@ export default function Search() {
         name="search"
         value={searchValue}
         onChange={onSearchInput}
+        
       />
     </div>
   );

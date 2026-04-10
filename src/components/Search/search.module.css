@@ -1,6 +1,6 @@
 .centerblock__search {
     width: 100%;
-    border-bottom: 1px solid #4e4e4e;
+    border-bottom: 1px solid var(--icon-secondary);
     margin-bottom: 51px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -18,8 +18,9 @@
     width: 17px;
     height: 17px;
     margin-right: 5px;
-    stroke: #ffffff;
     fill: transparent;
+    stroke: var(--icon-color);
+
   }
   
   .search__text {
@@ -33,7 +34,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #ffffff;
+    color: var(--text-color);
   }
   
   .search__text::-webkit-input-placeholder {
@@ -65,7 +66,7 @@
   
   .search__text::placeholder {
     background-color: transparent;
-    color: #ffffff;
+    color: var( --text-color);
     font-style: normal;
     font-weight: 400;
     font-size: 16px;

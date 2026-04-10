@@ -29,6 +29,9 @@ export default function Bar() {
   const [isLoadedTrack, setIsLoadedTrack] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const { toggleLike, isLike } = useLikeTrack(currentTrack);
+  const progressStyle = {
+    background: `linear-gradient(to right, var(--volume-active) ${volume}%, var(--volume-bg) ${volume}%)`,
+  };
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -242,10 +245,11 @@ export default function Bar() {
                     styles.btn
                   )}
                   type="range"
-                  name="range"
                   min="0"
                   max="100"
+                  value={volume}
                   onChange={volumeTrack}
+                  style={progressStyle}
                 />
               </div>
               <div className={styles.time}>
