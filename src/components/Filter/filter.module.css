@@ -10,7 +10,7 @@
     -ms-flex-align: center;
     align-items: center;
     margin-bottom: 51px;
-    color: white;
+    color: var(--text-color);
     gap: 10px;
   }
   .filter__title {
@@ -19,12 +19,14 @@
     font-size: 16px;
     line-height: 24px;
     margin-right: 5px;
+    color: var(--text-color);
   }
   
   
   .item {
     cursor: pointer;
     transition: 0.2s;
+    color: var(--text-color);
   }
   
   .item:hover {

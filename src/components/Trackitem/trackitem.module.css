@@ -37,7 +37,7 @@
   width: 51px;
   height: 51px;
   padding: 16px;
-  background: #313131;
+  background:  var(--badge-bg);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -54,7 +54,7 @@
   width: 18px;
   height: 17px;
   fill: transparent;
-  stroke: #4e4e4e;
+  stroke: var(--icon-secondary);
 }
 
 .active {
@@ -88,7 +88,7 @@ background: rgba(182, 114, 255, 1);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .track__titleSpan {
@@ -114,7 +114,7 @@ background: rgba(182, 114, 255, 1);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--text-color);
   text-align: left;
 }
 
@@ -127,7 +127,7 @@ background: rgba(182, 114, 255, 1);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #696969;
+  color: var(--icon-secondary);
 }
 .track__timeSvg {
   width: 14px;
@@ -149,7 +149,7 @@ background: rgba(182, 114, 255, 1);
   font-size: 16px;
   line-height: 24px;
   text-align: right;
-  color: #696969;
+  color: var(--icon-secondary);
 }
 
 .error {

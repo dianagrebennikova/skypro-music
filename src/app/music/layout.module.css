@@ -1,15 +1,14 @@
 .wrapper {
   width: 100%;
   overflow-x: hidden;
-  background-color: #181818;
+  background-color: var(--bg-color);
   min-height: 100vh
 
 }
 .container {
   max-width: 1920px;
   margin: 0 auto;
-/*   position: relative; */
-  background-color: #181818;
+  background-color: var(--bg-color);
 }
 .main {
   -webkit-box-flex: 1;
@@ -52,7 +51,7 @@
   line-height: 72px;
   letter-spacing: -0.8px;
   margin-bottom: 45px;
-  color: white;
+  color: var(--text-color);
 }
 
 .centerblock__content {
@@ -83,36 +82,5 @@
   margin-bottom: 24px;
 }
 
-.playlistTitle__col {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 2px;
-  color: #696969;
-  text-transform: uppercase;
-}
 
-.playlistTitle__svg {
-  width: 12px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
-}
 
-.col01 {
-  width: 447px;
-}
-
-.col02 {
-  width: 321px;
-}
-
-.col03 {
-  width: 245px;
-}
-
-.col04 {
-  width: 60px;
-  text-align: end;
-}

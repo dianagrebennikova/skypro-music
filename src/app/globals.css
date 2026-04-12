@@ -1,22 +1,69 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    font-family: var(--font-montserrat), 'Arial';
-    background-color: #181818;
+:root {
+  --bg-color: #181818;
+  --nav-bg: #181818;
+  --text-color: #ffffff;
+  --burger-color: #d3d3d3;
+  --bar-bg: rgba(28, 28, 28, 0.5);
+  --progress-bg: #2e2e2e;
+  --icon-color: #d9d9d9;
+  --icon-secondary: #696969;
+  --volume-bg: #797979;
+  --thumb-bg: #1a1a1a;
+  --volume-active: #ffffff;
+  --accent-color: #ffffff;
+  --dropdown-bg: rgba(49, 49, 49, 1);
+  --dropdown-scroll-track: rgba(75, 73, 73, 1);
+  --dropdown-scroll-thumb: #ffffff;
+  --badge-bg: rgba(49, 49, 49, 1);
 }
 
-h1, h2, h3, h4, h5, h6, p{
-    margin: 0;
+[data-theme="light"] {
+  --bg-color: rgba(246, 245, 243, 1);
+  --nav-bg: rgba(246, 245, 243, 1);
+  --text-color: #000000;
+  --burger-color: rgba(0, 0, 0, 1);
+  --bar-bg: #ffffff;
+  --progress-bg: rgba(217, 217, 217, 1);
+  --icon-color: #000000;
+  --icon-secondary: #999999;
+  --volume-bg: #cccccc;
+  --thumb-bg: #ffffff;
+  --volume-active: #b672ff;
+  --accent-color: #b672ff;
+  --dropdown-bg: #ffffff;
+  --dropdown-scroll-track: #e5e5e5;
+  --dropdown-scroll-thumb: #b672ff;
+  --badge-bg: #ffffff;
 }
 
-a,input, button{
-    font-family: var(--font-montserrat), 'Arial';
+body {
+  font-family: var(--font-montserrat), "Arial";
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-a{
-    text-decoration: none;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a,
+input,
+button {
+  font-family: var(--font-montserrat), "Arial";
+}
+
+a {
+  text-decoration: none;
 }

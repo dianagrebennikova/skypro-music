@@ -1,5 +1,5 @@
 .main__nav {
-    background-color: #181818;
+    background-color: var(--nav-bg);
     padding: 20px 0 20px 36px;
   }
 
@@ -39,7 +39,7 @@
     display: inline-block;
     width: 100%;
     height: 1px;
-    background-color: #d3d3d3;
+    background-color:  var(--burger-color);
   }
 
   .nav__menu {
@@ -63,7 +63,7 @@
 
     
   .menu__link {
-    color: #ffffff;
+    color: var(--text-color);
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -72,4 +72,4 @@
     cursor: pointer;  
     text-decoration: none; 
     font-family: inherit;  
-  }
+}

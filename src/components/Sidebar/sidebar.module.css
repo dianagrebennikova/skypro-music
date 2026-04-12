@@ -21,16 +21,21 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #ffffff;
+    color: var(--text-color);
     margin-right: 16px;
   }
   
   .sidebar__icon {
     width: 43px;
     height: 43px;
-    background-color: #313131;
+    background-color: var(--nav-bg);
     border-radius: 50%;
     cursor: pointer;
+    color: var(--icon-color);
+  }
+  .sidebar__icon svg * {
+    fill: var(--icon-color) !important;
+    stroke: var(--icon-color) !important;
   }
     
   .sidebar__block {
